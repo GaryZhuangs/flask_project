@@ -1,0 +1,1 @@
+from flask_project.apps.cmsapi.views import bp as cmsapi_bp

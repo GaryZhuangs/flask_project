@@ -1,0 +1,7 @@
+import requests
+headers={
+    "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0NDkxMDA5MywianRpIjoiYTFhYjE2N2MtMGZjOS00Njg3LTkxNDktMDAzNDVmYWI5MGE2IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IlZyOW4zY0JUYTVhNHBqenFNU1FyZHEiLCJuYmYiOjE3NDQ5MTAwOTMsImV4cCI6MTc0NDkxMDk5M30.gAvafzCztbThZXi1dPMJqXeBJnmVT2QlP4r59Jp6aOc",
+
+}
+resp=requests.get("http://127.0.0.1:5000/cmsapi",headers=headers)
+print(resp.text)

@@ -1,0 +1,16 @@
+@bp.get('/email/captcha')
+def email_captcha():
+        email=request.args.get('email')
+        if not email:
+            return jsonify({'code': 400,'msg': '邮箱不能为空'})
+        source=list(string.digits)
+        captcha=''.join(random.sample(source,6))
+        # 生成验证码
+        message = Message('注冊验证码',  recipients=[email],body="【IT之家】您的注冊验证码为：%s"%captcha)
+        try:
+            mail.send(message)
+        except Exception as e:
+            print("邮件发送失败")
+            print(e)
+            return jsonify({'code': 500,'msg': '验证码发送失败'})
+        return jsonify({'code': 200,'msg': '验证码发送成功'})
