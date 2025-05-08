@@ -423,7 +423,16 @@ def mycollect():
     pagination = Pagination(bs_version=3, page=page, total=total, prev_label='上一页', next_label='下一页')
     return render_template("front/mycollect.html", posts=posts, pagination=pagination)
 
-
+@bp.post("post/delete")
+def delete_post():
+    post_id = request.form.get("id")
+    try:
+        post_model = PostModel.query.get(post_id)
+    except Exception as e:
+        return restful.server_error(message="帖子不存在")
+    db.session.delete(post_model)
+    db.session.commit()
+    return restful.ok(message="删除成功")
 # @bp.route('/base')
 # def base():
 #     return render_template("front/base.html")
